@@ -59,15 +59,18 @@ function SimpleForm(props) {
 
   function onSubmit(e) {
     e.preventDefault();
+
     const data = Object.fromEntries(new FormData(e.target));
-    console.log(data);
+
+    console.log("Username: " + data.username);
+    console.log("Email: " + data.emailaddress);
   }
 
   return <Box classes='groovy'>
     <h2>Form Demo</h2>
 
     <form onSubmit={onSubmit}>
-      <label>User name</label>
+      <label>Name</label>
       <input type='text' name='username' />
 
       <label>Email address</label>
