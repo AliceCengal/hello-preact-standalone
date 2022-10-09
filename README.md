@@ -4,6 +4,8 @@ This is a demonstration app with standalone HTML and JSX files that loads Preact
 
 The demo is entirely made up of functional components and hooks, no class component. It includes a counter to demonstrate responsive UI, form submission, and a context implementation.
 
+See the demo in action: https://alicecengal.github.io/hello-preact-standalone/
+
 ## Why
 
 In case you want to host a small interactive app on a static host like Github Pages.
