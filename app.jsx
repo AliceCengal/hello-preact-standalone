@@ -100,7 +100,7 @@ function ContextBox(props) {
 // helper component
 function Box({ children, style, classes, ...props }) {
   return <div style={{
-    border: "1px solid gray",
+    border: '1px solid gray',
     padding: '0.5rem',
     display: 'inline-block',
     ...style
