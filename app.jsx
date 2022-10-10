@@ -99,13 +99,14 @@ function ContextBox(props) {
 
 // helper component
 function Box({ children, style, classes, ...props }) {
-  return <div style={{
-    border: '1px solid gray',
-    padding: '0.5rem',
-    display: 'inline-block',
-    ...style
-  }}
-    class={'' + classes}
+  return <div
+    style={{
+      border: '1px solid gray',
+      padding: '0.5rem',
+      display: 'inline-block',
+      ...style
+    }}
+    class={'' + (classes || '')}
     {...props}
   >
     {children}
@@ -114,13 +115,14 @@ function Box({ children, style, classes, ...props }) {
 
 // helper component
 function FlexBox({ children, style, classes, ...props }) {
-  return <div style={{
-    display: 'flex',
-    flexWrap: 'wrap',
-    gap: '0.5rem',
-    ...style
-  }}
-    class={'' + classes}
+  return <div
+    style={{
+      display: 'flex',
+      flexWrap: 'wrap',
+      gap: '0.5rem',
+      ...style
+    }}
+    class={'' + (classes || '')}
     {...props}
   >
     {children}
