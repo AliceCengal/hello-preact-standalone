@@ -6,6 +6,13 @@ var { useState, useContext, useCallback } = preactHooks;
 // disgusting hack to make Babel accept ghost tags -> <></>
 var React = { Fragment: preact.Fragment };
 
+/* alternatively, just dump it all into the React namespace
+const React = {
+  ...preact,
+  ...preactHooks,
+}
+*/
+
 // app shared state reference
 const AppCtx = preact.createContext(null);
 
@@ -76,7 +83,7 @@ function SimpleForm(props) {
       <label>Email address</label>
       <input type='email' name='emailaddress' />
 
-      <span></span><input type='submit' />
+      <input type='submit' />
     </form>
 
     <p>Check console log for result</p>
