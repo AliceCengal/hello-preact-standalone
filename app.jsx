@@ -109,7 +109,7 @@ function ContextBox(props) {
 function ChartDemo(props) {
 
   const canvasRef = useRef(null);
-  const SIZE = 50;
+  const SIZE = 52;
 
   const data = {
     labels: Array(SIZE).fill(1).map((i, ix) => ix),
@@ -117,7 +117,7 @@ function ChartDemo(props) {
       label: 'starling population',
       data: Array(SIZE).fill(1).map((i, ix) => Math.random() * 10),
       backgroundColor: Array(SIZE).fill(1).map((i, ix) =>
-        `hsl(${(ix * 13) % 360}, 100%, 50%)`
+        `hsl(${ (360 + 180 - ix * 360/SIZE) % 360 }, 100%, 50%)`
       )
     }]
   }
@@ -144,7 +144,7 @@ function ChartDemo(props) {
     const myChart = new Chart(
       canvasRef.current,
       {
-        type: 'line',
+        type: 'bar',
         data,
         options,
       }
@@ -160,7 +160,7 @@ function ChartDemo(props) {
         flexDirection: 'column',
       }}
     >
-      <h3>Starling population</h3>
+      <h2>Starling population</h2>
       <div
         style={{
           position: 'relative',
