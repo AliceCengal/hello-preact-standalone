@@ -1,7 +1,7 @@
 /** @jsx preact.h */
 
 // import any hook you want to use here
-var { useState, useContext, useCallback } = preactHooks;
+var { useState, useContext, useCallback, useRef, useEffect } = preactHooks;
 
 // disgusting hack to make Babel accept ghost tags -> <></>
 var React = { Fragment: preact.Fragment };
@@ -39,6 +39,7 @@ function App(props) {
         <Counter />
         <SimpleForm />
         <ContextBox />
+        <ChartDemo />
       </FlexBox>
     </main>
   </AppCtx.Provider>
@@ -102,6 +103,75 @@ function ContextBox(props) {
       value={incrementBy}
       onChange={(e) => setIncrement(Number(e.target.value))} />
   </Box>
+}
+
+// demo component
+function ChartDemo(props) {
+
+  const canvasRef = useRef(null);
+  const SIZE = 50;
+
+  const data = {
+    labels: Array(SIZE).fill(1).map((i, ix) => ix),
+    datasets: [{
+      label: 'starling population',
+      data: Array(SIZE).fill(1).map((i, ix) => Math.random() * 10),
+      backgroundColor: Array(SIZE).fill(1).map((i, ix) =>
+        `hsl(${(ix * 13) % 360}, 100%, 50%)`
+      )
+    }]
+  }
+
+  const options = {
+    responsive: true,
+    maintainAspectRatio: false,
+    animation: false,
+    plugins: {
+      legend: {
+        display: false,
+      },
+      tooltip: {
+        callbacks: {
+          label: function (context) {
+            return context.dataset.label + ': $' + context.formattedValue
+          }
+        }
+      }
+    }
+  }
+
+  useEffect(() => {
+    const myChart = new Chart(
+      canvasRef.current,
+      {
+        type: 'line',
+        data,
+        options,
+      }
+    )
+  }, [])
+
+  return (
+    <Box
+      style={{
+        width: '100%',
+        maxWidth: '30rem',
+        display: 'flex',
+        flexDirection: 'column',
+      }}
+    >
+      <h3>Starling population</h3>
+      <div
+        style={{
+          position: 'relative',
+          height: '20rem',
+          width: '100%',
+        }}
+      >
+        <canvas ref={canvasRef}></canvas>
+      </div>
+    </Box>
+  )
 }
 
 // helper component
