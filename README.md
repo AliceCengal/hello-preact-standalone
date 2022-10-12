@@ -50,4 +50,5 @@ const preactHooks = {
 
 ## Optional addons for convenience
 
-Bootstrap CSS.
+Bootstrap CSS.  
+ChartJS for data visualization. Refer to the `charting` branch for a demo.
